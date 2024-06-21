@@ -1,1 +1,68 @@
-<h1>Início</h1>
+<!-- Inicio -->
+<section id="inicio" class="">
+	<div id="sem-treinos">
+		<h2>Você ainda não possui Treinos. </h2>
+		<!-- <button id="primeiro-treino">Quero criar meu primeiro Treino!</button> -->
+		<!-- <nav-link href="/novo-treino">Novo Treino</nav-link> -->
+	</div>
+	<div id="cards-treinos">
+		<h2>Meus Treinos</h2>
+	</div>
+</section>
+
+<!-- Modal -->
+<div id="myModal" class="modal invisivel">
+	<div class="modal-content">
+		<span class="close"><i class="fa-solid fa-xmark"></i></span>
+		<p class="modal-text"></p>
+		<div class="modal-buttons">
+			<button class="modal-button nao">NÃO</button>
+			<button class="modal-button sim">SIM</button>
+		</div>
+	</div>
+</div>
+
+<script type="module">
+
+	import '../assets/js/modal/modal.js';
+
+	console.log('inicio.html foi renderizado');
+
+	const $cardSemTreino = document.querySelector('#sem-treinos');
+	const $cardsTreinos = document.querySelector('#cards-treinos');
+
+	if (treinos.length === 0) {
+		$cardSemTreino.classList.remove('invisivel');
+		$cardsTreinos.classList.add('invisivel');
+	} else {
+		treinos.forEach(treino => criarCardTreino($cardsTreinos, treino));
+		$cardSemTreino.classList.add('invisivel');
+		$cardsTreinos.classList.remove('invisivel');
+	}
+
+	// Watch for click on delete button
+	$cardsTreinos.addEventListener('click', function (e) {
+		const elementoClicado = e.target;
+		const ehParaDeletar = elementoClicado.classList.contains('apagar-treino');
+
+		if (ehParaDeletar) {
+
+			activeModal('Deseja realmente deletar o treino?', () => {
+				const parentCard = elementoClicado.closest('.card-treino');
+				const nomeTreino = parentCard.querySelector('h4').textContent;
+
+				treinos = treinos.filter(treino => treino.nome !== nomeTreino);
+				removerTreino(nomeTreino);
+
+				parentCard.remove();
+
+				if (treinos.length === 0) {
+					$cardsTreinos.classList.add('invisivel');
+					$cardSemTreino.classList.remove('invisivel');
+				}
+			});
+
+		}
+	});
+
+</script>
