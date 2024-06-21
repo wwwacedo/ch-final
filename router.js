@@ -17,7 +17,6 @@ class Router {
   }
 
   loadRoute(route) {
-		// console.log(route.filepath);
     fetch(route.filepath)
       .then(response => response.text())
       .then(html => {

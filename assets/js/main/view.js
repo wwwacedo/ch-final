@@ -10,7 +10,7 @@ import {
 	limparForm
 } from './controllers.js';
 
-import '../nav/nav.js';
+// import '../nav/nav.js';
 import { MENSAGEM, GRUPOS, SUBGRUPOS, EQUIPAMENTO } from '../../data/data.js';
 import { activeModal } from '../modal/modal.js';
 import { acionaAlert } from '../alert/alert.js';
@@ -150,8 +150,8 @@ $cardsTreinos.addEventListener('click', function (e) {
 });
 
 
-document.body.onload = setTimeout(() => {
-	document.querySelector('main').classList.remove('invisivel');
-	document.querySelector('.loader').classList.add('invisivel');
-}, 1000);
+// document.body.onload = setTimeout(() => {
+// 	document.querySelector('main').classList.remove('invisivel');
+// 	document.querySelector('.loader').classList.add('invisivel');
+// }, 1000);
 
