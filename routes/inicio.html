@@ -1,32 +1,35 @@
 <!-- Inicio -->
-<section id="inicio" class="">
-	<div id="sem-treinos">
-		<h2>Você ainda não possui Treinos. </h2>
-		<!-- <button id="primeiro-treino">Quero criar meu primeiro Treino!</button> -->
-		<!-- <nav-link href="/novo-treino">Novo Treino</nav-link> -->
-	</div>
-	<div id="cards-treinos">
-		<h2>Meus Treinos</h2>
-	</div>
-</section>
+<main>
+	<section id="inicio" class="">
+		<div id="sem-treinos">
+			<h2>Você ainda não possui Treinos. </h2>
+			<!-- <button id="primeiro-treino">Quero criar meu primeiro Treino!</button> -->
+			<!-- <nav-link href="/novo-treino">Novo Treino</nav-link> -->
+		</div>
+		<div id="cards-treinos">
+			<h2>Meus Treinos</h2>
+		</div>
+	</section>
 
-<!-- Modal -->
-<div id="myModal" class="modal invisivel">
-	<div class="modal-content">
-		<span class="close"><i class="fa-solid fa-xmark"></i></span>
-		<p class="modal-text"></p>
-		<div class="modal-buttons">
-			<button class="modal-button nao">NÃO</button>
-			<button class="modal-button sim">SIM</button>
+	<!-- Modal -->
+	<div id="myModal" class="modal invisivel">
+		<div class="modal-content">
+			<span class="close"><i class="fa-solid fa-xmark"></i></span>
+			<p class="modal-text"></p>
+			<div class="modal-buttons">
+				<button class="modal-button nao">NÃO</button>
+				<button class="modal-button sim">SIM</button>
+			</div>
 		</div>
 	</div>
-</div>
+</main>
 
 <script type="module">
 
 	import '../assets/js/modal/modal.js';
-
-	console.log('inicio.html foi renderizado');
+	import { criarCardTreino } from '../assets/js/main/controllers.js';
+	import { activeModal } from '../assets/js/modal/modal.js';
+	import { removerTreino } from '../assets/js/localStorage/localStorage.js';
 
 	const $cardSemTreino = document.querySelector('#sem-treinos');
 	const $cardsTreinos = document.querySelector('#cards-treinos');
