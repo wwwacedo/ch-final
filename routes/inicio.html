@@ -11,6 +11,11 @@
 		</div>
 	</section>
 
+	<!-- Loader -->
+	<!-- <div class="loader">
+		<i class="fa-solid fa-spinner loader-icon"></i>
+	</div> -->
+
 	<!-- Modal -->
 	<div id="myModal" class="modal invisivel">
 		<div class="modal-content">
@@ -38,34 +43,43 @@
 		$cardSemTreino.classList.remove('invisivel');
 		$cardsTreinos.classList.add('invisivel');
 	} else {
-		treinos.forEach(treino => criarCardTreino($cardsTreinos, treino));
 		$cardSemTreino.classList.add('invisivel');
 		$cardsTreinos.classList.remove('invisivel');
-	}
+		treinos.forEach(treino => criarCardTreino($cardsTreinos, treino, () => {
+			activeModal('Deseja realmente deletar o treino?', (e) => {
+				// remove from localStorage
+				removerTreino(treino.nome);
 
-	// Watch for click on delete button
-	$cardsTreinos.addEventListener('click', function (e) {
-		const elementoClicado = e.target;
-		const ehParaDeletar = elementoClicado.classList.contains('apagar-treino');
+				// remove from array
+				treinos = treinos.filter(t => t.nome !== treino.nome);
 
-		if (ehParaDeletar) {
-
-			activeModal('Deseja realmente deletar o treino?', () => {
-				const parentCard = elementoClicado.closest('.card-treino');
-				const nomeTreino = parentCard.querySelector('h4').textContent;
-
-				treinos = treinos.filter(treino => treino.nome !== nomeTreino);
-				removerTreino(nomeTreino);
-
+				// remove from DOM
+				const parentCard = encontraCardTreinoPorNome(treino.nome);
 				parentCard.remove();
 
+				// check if there are any treinos left
 				if (treinos.length === 0) {
-					$cardsTreinos.classList.add('invisivel');
 					$cardSemTreino.classList.remove('invisivel');
+					$cardsTreinos.classList.add('invisivel');
 				}
-			});
+			})
+		}));
+	}
 
+	function encontraCardTreinoPorNome(nome) {
+		const cards = $cardsTreinos.querySelectorAll('.card-treino');
+		for (const card of cards) {
+			const h4 = card.querySelector('.card-titulo h4');
+			if (h4 && h4.textContent === nome) {
+				return card;
+			}
 		}
-	});
+		return null; // Return null if no matching card is found
+	}
+
+	// document.body.onload = setTimeout(() => {
+	// 	document.querySelector('main').classList.remove('invisivel');
+	// 	document.querySelector('.loader').classList.add('invisivel');
+	// }, 1000);
 
 </script>

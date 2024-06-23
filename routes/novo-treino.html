@@ -166,8 +166,8 @@
 		treinos.push(treino);
 		salvarTreino(treinos);
 		exercicios = [];
-		atualizarIndice($exercicioIndice, exercicios);
 		$cardsExercicios.innerHTML = '';
+		atualizarIndice($exercicioIndice, exercicios);
 		limparForm($form);
 		$nomeTreino.value = '';
 		acionaAlert($alert, MENSAGEM.SUCESSO.TREINO_CRIADO, 'success');

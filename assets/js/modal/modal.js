@@ -1,16 +1,16 @@
-// Get the modal
-const modal = document.querySelector("#myModal");
-const text = modal.querySelector('.modal-text');
-const closeBtn = modal.querySelector(".close");
-const no = modal.querySelector('.modal-button.nao');
-const yes = modal.querySelector('.modal-button.sim');
-
 export function activeModal(message, confirmCallback, cancelCallback) {
+
+	// Get the modal
+	const modal = document.querySelector("#myModal");
+	const text = modal.querySelector('.modal-text');
+	const closeBtn = modal.querySelector(".close");
+	const no = modal.querySelector('.modal-button.nao');
+	const yes = modal.querySelector('.modal-button.sim');
 
 	if (!confirmCallback) {
 		throw new Error("É necessário passar uma função callback para o caso de resposta positiva");
 	}
-	
+
 	// Mensagem do modal
 	text.textContent = message;
 

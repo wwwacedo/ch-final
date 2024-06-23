@@ -52,7 +52,7 @@ export function criarTreino(nome, exercicios) {
 	return new Treino(nome.toUpperCase(), exercicios);
 }
 
-export function criarCardTreino(elemento, treino) {
+export function criarCardTreino(elemento, treino, callback) {
 	const $card = document.createElement('div');
 	$card.classList.add('card-treino');
 
@@ -87,6 +87,7 @@ export function criarCardTreino(elemento, treino) {
 
 	const $botaoApagar = document.createElement('button');
 	$botaoApagar.classList.add('apagar-treino');
+	$botaoApagar.addEventListener('click', callback);
 	$botaoApagar.textContent = 'EXCLUIR TREINO';
 
 	cardExercicios.appendChild($botaoApagar);
