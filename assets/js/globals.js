@@ -1,8 +1,3 @@
 // global variables
-const treinosSalvos = JSON.parse(localStorage.getItem('treino')) || [];
-let treinos = [];
+let treinos = JSON.parse(localStorage.getItem('treino')) || [];
 let exercicios = [];
-
-if (treinosSalvos.length > 0) {
-	treinos = treinosSalvos;
-}

@@ -1,52 +1,34 @@
 import { router } from '../../router.js';
 
+// Classe que representa um <nav-link>
 class Link extends HTMLElement {
 	constructor() {
 		super();
 		this.href = this.getAttribute('href');
 	}
 
-	static get observedAttributes() {
-		return ['class'];
-	}
+	// Evento de clique
+	handleClick(event) {
+		event.preventDefault();
+		router.push(this.href);
 
-	attributeChangedCallback(name, oldValue, newValue) {
-		if (name === 'class' && oldValue !== newValue) {
-			this.updateLinkClass(newValue);
-		}
-	}
+		document.querySelectorAll('nav-link').forEach((link) => {
+			if (link.shadowRoot) {
+				const anchor = link.shadowRoot.querySelector('a');
+				anchor.classList.remove('ativo');
+			}
+		});
 
-	updateLinkClass(newClass) {
 		if (this.shadowRoot) {
 			const anchor = this.shadowRoot.querySelector('a');
-			if (anchor) {
-				anchor.className = newClass;
-			}
+			anchor.classList.add('ativo');
 		}
 	}
 
-		handleClick(event) {
-			event.preventDefault();
-			router.push(this.href);
-
-			document.querySelectorAll('nav-link').forEach((link) => {
-				if (link.shadowRoot) {
-					const anchor = link.shadowRoot.querySelector('a');
-					anchor.classList.remove('ativo');
-				}
-			});
-			
-			if (this.shadowRoot) {
-				const anchor = this.shadowRoot.querySelector('a');
-				anchor.classList.add('ativo');
-			}
-
-		}
-
-		connectedCallback() {
-			this.addEventListener('click', (e) => this.handleClick(e));
-			this.attachShadow({ mode: 'open' });
-			this.shadowRoot.innerHTML = `
+	connectedCallback() {
+		this.addEventListener('click', (e) => this.handleClick(e));
+		this.attachShadow({ mode: 'open' });
+		this.shadowRoot.innerHTML = `
       <style>
         /* Example styles */
         a {
@@ -70,11 +52,11 @@ class Link extends HTMLElement {
       </style>
       <a href="${this.href}" class="${this.getAttribute('class')}"><slot></slot></a>
     `;
-		}
-
-		disconnectedCallback() {
-			this.removeEventListener('click', (e) => this.handleClick(e));
-		}
 	}
+
+	disconnectedCallback() {
+		this.removeEventListener('click', (e) => this.handleClick(e));
+	}
+}
 
 customElements.define('nav-link', Link);

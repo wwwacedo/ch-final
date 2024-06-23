@@ -1,3 +1,4 @@
+// Classe que representa uma rota
 export class Route {
 	constructor(title, url, filepath) {
 		this.title = title;
@@ -6,16 +7,19 @@ export class Route {
 	}
 }
 
+// Classe que representa o roteador
 class Router {
 	constructor() {
 		this.routes = [];
 	}
 
+	// Adiciona uma nova rota
 	addRoute(route) {
 		if (!(route instanceof Route)) throw new Error('Route must be an instance of Route class');
 		this.routes.push(route);
 	}
 
+	// Carrega uma rota
 	loadRoute(route) {
 		fetch(route.filepath)
 			.then(response => response.text())
@@ -23,18 +27,19 @@ class Router {
 				const root = document.getElementById('root');
 				root.innerHTML = html;
 
-				// Find all script tags in the response
+				// Encontra o elemento script na nova pagina
 				const oldScript = root.querySelector('script');
 
+				// Cria um novo elemento script
 				const newScript = document.createElement('script');
 
-				// Copy all attributes from the old script to the new script
-				Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+				// Define o tipo de script como 'module'
+				newScript.setAttribute('type', 'module');
 
-				// If the script has content, copy it
+				// Copia o conteúdo do elemento script existente
 				newScript.textContent = oldScript.textContent;
 
-				// Replace the old script with the new script in the DOM
+				// Substitui o elemento script existente pelo novo
 				oldScript.parentNode.replaceChild(newScript, oldScript);
 			})
 			.catch(error => {
@@ -42,10 +47,12 @@ class Router {
 			});
 	}
 
+	// Busca uma rota pelo seu URL
 	findRouteByUrl(url) {
 		return this.routes.find(route => route.url === url);
 	}
 
+	// Redireciona para uma rota
 	push(url) {
 		const route = this.findRouteByUrl(url);
 		window.history.pushState({}, route.title, route.url);
