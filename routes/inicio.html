@@ -1,0 +1,85 @@
+<!-- Inicio -->
+<main>
+	<section id="inicio" class="">
+		<div id="sem-treinos">
+			<h2>Você ainda não possui Treinos. </h2>
+			<!-- <button id="primeiro-treino">Quero criar meu primeiro Treino!</button> -->
+			<!-- <nav-link href="/novo-treino">Novo Treino</nav-link> -->
+		</div>
+		<div id="cards-treinos">
+			<h2>Meus Treinos</h2>
+		</div>
+	</section>
+
+	<!-- Loader -->
+	<!-- <div class="loader">
+		<i class="fa-solid fa-spinner loader-icon"></i>
+	</div> -->
+
+	<!-- Modal -->
+	<div id="myModal" class="modal invisivel">
+		<div class="modal-content">
+			<span class="close"><i class="fa-solid fa-xmark"></i></span>
+			<p class="modal-text"></p>
+			<div class="modal-buttons">
+				<button class="modal-button nao">NÃO</button>
+				<button class="modal-button sim">SIM</button>
+			</div>
+		</div>
+	</div>
+</main>
+
+<script type="module">
+
+	import '../assets/js/modal/modal.js';
+	import { criarCardTreino } from '../assets/js/main/controllers.js';
+	import { activeModal } from '../assets/js/modal/modal.js';
+	import { removerTreino } from '../assets/js/localStorage/localStorage.js';
+
+	const $cardSemTreino = document.querySelector('#sem-treinos');
+	const $cardsTreinos = document.querySelector('#cards-treinos');
+
+	if (treinos.length === 0) {
+		$cardSemTreino.classList.remove('invisivel');
+		$cardsTreinos.classList.add('invisivel');
+	} else {
+		$cardSemTreino.classList.add('invisivel');
+		$cardsTreinos.classList.remove('invisivel');
+		treinos.forEach(treino => criarCardTreino($cardsTreinos, treino, () => {
+			activeModal('Deseja realmente deletar o treino?', (e) => {
+				// remove from localStorage
+				removerTreino(treino.nome);
+
+				// remove from array
+				treinos = treinos.filter(t => t.nome !== treino.nome);
+
+				// remove from DOM
+				const parentCard = encontraCardTreinoPorNome(treino.nome);
+				parentCard.remove();
+
+				// check if there are any treinos left
+				if (treinos.length === 0) {
+					$cardSemTreino.classList.remove('invisivel');
+					$cardsTreinos.classList.add('invisivel');
+				}
+			})
+		}));
+	}
+
+	function encontraCardTreinoPorNome(nome) {
+		const cards = $cardsTreinos.querySelectorAll('.card-treino');
+		for (const card of cards) {
+			const h4 = card.querySelector('.card-titulo h4');
+			if (h4 && h4.textContent === nome) {
+				return card;
+			}
+		}
+		return null; // Return null if no matching card is found
+	}
+
+	// document.body.onload = setTimeout(() => {
+	// 	document.querySelector('main').classList.remove('invisivel');
+	// 	document.querySelector('.loader').classList.add('invisivel');
+	// }, 1000);
+
+</script>

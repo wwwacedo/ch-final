@@ -1,0 +1,186 @@
+<!-- Alert -->
+<div class="alert invisivel" id="alert"></div>
+
+<!-- Novo Treino -->
+<main>
+	<section id="novo-treino">
+		<h2>Novo Treino</h2>
+		<div id="wrapper-nome-treino">
+			<label for="nome-treino">Nome do Treino</label>
+			<input type="text" id="nome-treino" placeholder="Treino A / B / C ..." autocomplete="off" maxlength="40">
+			<div class="error-message invisivel" id="nome-treino-error">Nome obrigatório</div>
+		</div>
+
+		<form autocomplete="off">
+			<fieldset>
+				<legend>Exercício # <span name="exercicio-indice" id="exercicio-indice"></span></legend>
+
+				<div>
+					<label for="nome">Nome</label>
+					<input type="text" id="nome" name="nome" placeholder="Supino..." required maxlength="40">
+				</div>
+
+				<div>
+					<label for="grupo">Grupo</label>
+					<select id="grupo" name="grupo" required>
+						<option value="">Selecione...</option>
+					</select>
+				</div>
+
+				<div>
+					<label for="subgrupo">Subgrupo</label>
+					<select id="subgrupo" name="subgrupo" required>
+						<option value="">Selecione...</option>
+					</select>
+				</div>
+
+				<div>
+					<label for="equipamento">Equipamento</label>
+					<select id="equipamento" name="equipamento" required>
+						<option value="">Selecione...</option>
+					</select>
+				</div>
+
+				<div id="valores-numericos">
+
+					<div>
+						<div class="valor-numerico">
+							<label for="series"><i class="fa-solid fa-fire fire"></i>Séries</label>
+							<input type="number" id="series" name="series" value="3" min="1" max="10" required>
+						</div>
+
+						<div class="valor-numerico">
+							<label for="reps"><i class="fa-solid fa-repeat repeat"></i>Reps</label>
+							<input type="number" id="reps" name="reps" value="10" min="1" max="50" required>
+						</div>
+					</div>
+
+					<div>
+						<div class="valor-numerico">
+							<label for="peso"><i class="fa-solid fa-dumbbell dumbbell"></i></i>Peso</label>
+							<input type="number" id="peso" name="peso" value="5" min="0" max="500" required>
+							<p class="unidade">kg</p>
+						</div>
+
+						<div class="valor-numerico">
+							<label for="descanso"><i class="fa-regular fa-clock clock"></i>Descanso</label>
+							<input type="number" id="descanso" name="descanso" value="30" required>
+							<p class="unidade">segundos</p>
+						</div>
+					</div>
+				</div>
+
+				<button type="submit" value="add" class="button-blue" id="adicionar">ADICIONAR</button>
+
+			</fieldset>
+
+		</form>
+
+		<div id="cards-exercicios"></div>
+
+		<button type="button" class="button-yellow" id="salvar-treino">SALVAR TREINO</button>
+
+	</section>
+</main>
+<script type="module">
+
+	import {
+		criarOptions,
+		criarOptionVazio,
+		atualizarIndice,
+		criarExercicio,
+		criarCardExercicio,
+		criarTreino,
+		criarCardTreino,
+		verificarTreino,
+		limparForm
+	} from '../assets/js/main/controllers.js';
+
+	import { MENSAGEM, GRUPOS, SUBGRUPOS, EQUIPAMENTO } from '../assets/data/data.js';
+	import { acionaAlert } from '../assets/js/alert/alert.js';
+	import { salvarTreino } from '../assets/js/localStorage/localStorage.js';
+
+	const $form = document.querySelector('form');
+	const $inputs = $form.elements;
+
+	// elementos do form cujos options são criados ao iniciar 
+	const $selectGrupo = $inputs['grupo'];
+	const $selectSubgrupo = $inputs['subgrupo'];
+	const $selectEquipamento = $inputs['equipamento'];
+
+	// elementos fora do form
+	const $exercicioIndice = $form.querySelector('#exercicio-indice');
+	const $nomeTreino = document.querySelector('#nome-treino');
+	const $btnSalvar = document.querySelector('#salvar-treino');
+	const $cardsExercicios = document.querySelector('#cards-exercicios');
+
+	// erro
+	const $nomeTreinoError = document.querySelector('#nome-treino-error');
+
+	// alert
+	const $alert = document.querySelector('#alert');
+
+	$form.addEventListener('submit', function (e) {
+		e.preventDefault();
+		const formData = new FormData($form);
+
+		const data = Object.fromEntries(formData);
+		const exercicio = criarExercicio(data);
+
+		exercicios = [...exercicios, exercicio];
+
+		const cardExercicio = criarCardExercicio(exercicio);
+		$cardsExercicios.appendChild(cardExercicio);
+		atualizarIndice($exercicioIndice, exercicios);
+		limparForm($form);
+		acionaAlert($alert, MENSAGEM.SUCESSO.EXERCICIO_CRIADO, 'success');
+	});
+
+
+	$selectGrupo.addEventListener('change', function () {
+		$selectSubgrupo.innerHTML = '';
+		criarOptionVazio($selectSubgrupo);
+		if ($selectGrupo.value) {
+			criarOptions($selectSubgrupo, SUBGRUPOS[$selectGrupo.value]);
+		}
+	});
+
+
+	$btnSalvar.addEventListener('click', function () {
+		if ($nomeTreino.value === '') {
+			$nomeTreinoError.classList.remove('invisivel');
+			return;
+		}
+
+		if (!exercicios.length) {
+			acionaAlert($alert, MENSAGEM.ERRO.SEM_EXERCICIOS, 'error');
+			return;
+		}
+
+		if (verificarTreino(treinos, $nomeTreino.value)) {
+			acionaAlert($alert, MENSAGEM.ERRO.NOME_TREINO_EXISTE, 'error');
+			return;
+		}
+
+		const treino = criarTreino($nomeTreino.value, exercicios);
+		treinos.push(treino);
+		salvarTreino(treinos);
+		exercicios = [];
+		$cardsExercicios.innerHTML = '';
+		atualizarIndice($exercicioIndice, exercicios);
+		limparForm($form);
+		$nomeTreino.value = '';
+		acionaAlert($alert, MENSAGEM.SUCESSO.TREINO_CRIADO, 'success');
+	});
+
+
+	$nomeTreino.addEventListener('focus', function () {
+		$nomeTreinoError.classList.add('invisivel');
+	})
+
+
+	criarOptions($selectGrupo, GRUPOS);
+	criarOptions($selectEquipamento, EQUIPAMENTO);
+	atualizarIndice($exercicioIndice, exercicios);
+
+</script>

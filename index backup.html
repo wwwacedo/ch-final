@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./assets/css/style.css">
+	<link rel="stylesheet" href="./assets/css/modal.css">
+	<link rel="stylesheet" href="./assets/css/alert.css">
+	<link rel="stylesheet" href="./assets/css/loader.css">
+	<script src="https://kit.fontawesome.com/764ba3b2d7.js" crossorigin="anonymous"></script>
+	<title>Treino Fácil</title>
+	<script type="module" src="./assets/components/card-exercicio.js" defer></script>
+</head>
+
+<body>
+	<header>
+		<div id="header-wrapper">
+			<div id="brand">
+				<span><i class="fa-solid fa-bolt"></i></span>
+				Treino Fácil
+			</div>
+			<nav>
+				<ul>
+					<li><a class="ativo" href="">Início</a></li>
+					<li><a href="">Novo Treino</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<!-- Alert -->
+	<div class="alert invisivel" id="alert"></div>
+
+	<!-- Modal -->
+	<div id="myModal" class="modal invisivel">
+		<div class="modal-content">
+			<span class="close"><i class="fa-solid fa-xmark"></i></span>
+			<p class="modal-text"></p>
+			<div class="modal-buttons">
+				<button class="modal-button nao">NÃO</button>
+				<button class="modal-button sim">SIM</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Loader -->
+	<div class="loader">
+		<i class="fa-solid fa-spinner loader-icon"></i>
+	</div>
+
+	<!-- Main -->
+	<main class="invisivel">
+		<section id="inicio" class="">
+			<div id="sem-treinos">
+				<h2>Você ainda não possui Treinos. </h2>
+				<button id="primeiro-treino">Quero criar meu primeiro Treino!</button>
+			</div>
+			<div id="cards-treinos">
+				<h2>Meus Treinos</h2>
+			</div>
+		</section>
+
+		<section id="novo-treino" class="invisivel">
+			<h2>Novo Treino</h2>
+			<div id="wrapper-nome-treino">
+				<label for="nome-treino">Nome do Treino</label>
+				<input type="text" id="nome-treino" placeholder="Treino A / B / C ..." autocomplete="off" maxlength="40">
+				<div class="error-message invisivel" id="nome-treino-error">Nome obrigatório</div>
+			</div>
+
+			<form autocomplete="off">
+				<fieldset>
+					<legend>Exercício # <span name="exercicio-indice" id="exercicio-indice"></span></legend>
+
+					<div>
+						<label for="nome">Nome</label>
+						<input type="text" id="nome" name="nome" placeholder="Supino..." required maxlength="40">
+					</div>
+
+					<div>
+						<label for="grupo">Grupo</label>
+						<select id="grupo" name="grupo" required>
+							<option value="">Selecione...</option>
+						</select>
+					</div>
+
+					<div>
+						<label for="subgrupo">Subgrupo</label>
+						<select id="subgrupo" name="subgrupo" required>
+							<option value="">Selecione...</option>
+						</select>
+					</div>
+
+					<div>
+						<label for="equipamento">Equipamento</label>
+						<select id="equipamento" name="equipamento" required>
+							<option value="">Selecione...</option>
+						</select>
+					</div>
+
+					<div id="valores-numericos">
+
+						<div>
+							<div class="valor-numerico">
+								<label for="series"><i class="fa-solid fa-fire fire"></i>Séries</label>
+								<input type="number" id="series" name="series" value="3" min="1" max="10" required>
+							</div>
+
+							<div class="valor-numerico">
+								<label for="reps"><i class="fa-solid fa-repeat repeat"></i>Reps</label>
+								<input type="number" id="reps" name="reps" value="10" min="1" max="50" required>
+							</div>
+						</div>
+
+						<div>
+							<div class="valor-numerico">
+								<label for="peso"><i class="fa-solid fa-dumbbell dumbbell"></i></i>Peso</label>
+								<input type="number" id="peso" name="peso" value="5" min="0" max="500" required>
+								<p class="unidade">kg</p>
+							</div>
+
+							<div class="valor-numerico">
+								<label for="descanso"><i class="fa-regular fa-clock clock"></i>Descanso</label>
+								<input type="number" id="descanso" name="descanso" value="30" required>
+								<p class="unidade">segundos</p>
+							</div>
+						</div>
+					</div>
+
+					<button type="submit" value="add" class="button-blue" id="adicionar">ADICIONAR</button>
+
+				</fieldset>
+
+			</form>
+
+			<div id="cards-exercicios"></div>
+
+			<button type="button" class="button-yellow" id="salvar-treino">SALVAR TREINO</button>
+
+		</section>
+
+	</main>
+
+	<script type="module" src="./assets/js/main/view.js"></script>
+
+</body>
+
+</html>
