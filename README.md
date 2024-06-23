@@ -6,9 +6,9 @@
 5. Customização de Alerts de sucesso e de erro;
 6. Criar Dialog para aguardar confirmação do usuário antes de excluir treino;
 7. Salvar exercícios e treinos no localStorage;
+8. Criar rotas.
 
 
 # Próximas atualizações
 1. Colocar link de início no nome Treino Fácil;
-2. Criar rotas.
 
