@@ -12,9 +12,9 @@
 	</section>
 
 	<!-- Loader -->
-	<!-- <div class="loader">
+	<div class="loader">
 		<i class="fa-solid fa-spinner loader-icon"></i>
-	</div> -->
+	</div>
 
 	<!-- Modal -->
 	<div id="myModal" class="modal invisivel">
@@ -77,9 +77,9 @@
 		return null; // Return null if no matching card is found
 	}
 
-	// document.body.onload = setTimeout(() => {
-	// 	document.querySelector('main').classList.remove('invisivel');
-	// 	document.querySelector('.loader').classList.add('invisivel');
-	// }, 1000);
+	document.body.onload = setTimeout(() => {
+		document.querySelector('main').classList.remove('invisivel');
+		document.querySelector('.loader').classList.add('invisivel');
+	}, 500);
 
 </script>
