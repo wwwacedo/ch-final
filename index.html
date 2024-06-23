@@ -29,17 +29,9 @@
 
 	<div id="root"></div>
 
+	<!-- Global JS -->
+	<script src="./assets/js/globals.js"></script>
 	<script type="module" src="./index.js"></script>
-	<script>
-		// global variables
-		const treinosSalvos = JSON.parse(localStorage.getItem('treino')) || [];
-		let treinos = [];
-		let exercicios = [];
-
-		if (treinosSalvos?.length > 0) {
-			treinos = treinosSalvos;
-		}
-	</script>
 
 </body>
 
