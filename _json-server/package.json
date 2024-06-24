@@ -1,0 +1,17 @@
+{
+  "name": "_json-server",
+  "version": "1.0.0",
+  "description": "1. Subindo [`json-server`](https://www.npmjs.com/package/json-server) na porta `3333`: ```bash npm i -g json-server@1.0.0-alpha.22 json-server posts.json -p 3042 ```",
+  "main": "index.js",
+  "scripts": {
+		"start": "json-server --watch data.json --port 3333",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "json-server": "^1.0.0-beta.1",
+    "nodemon": "^3.1.4"
+  }
+}

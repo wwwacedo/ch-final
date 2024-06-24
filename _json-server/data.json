@@ -1,0 +1,21 @@
+
+{
+	"treinos": [
+	{
+			"nome": "Treino p/ membros superiores",
+			"exercicios": [
+					{
+							"nome": "Supino",
+							"grupo": "superior",
+							"subgrupo": "braço (geral)",
+							"equipamento": "barra",
+							"series": "3",
+							"reps": "10",
+							"peso": "5",
+							"descanso": "30"
+					}
+			]
+	}
+	]
+}
+

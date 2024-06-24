@@ -74,9 +74,11 @@
 		return null; // Return null if no matching card is found
 	}
 
-	// document.body.onload = setTimeout(() => {
-	// 	document.querySelector('main').classList.remove('invisivel');
-	// 	document.querySelector('.loader').classList.add('invisivel');
-	// }, 500);
+	const sugeridos = fetch('http://localhost:3333/treinos')
+		.then(response => response.json())
+		.then(treinos => {
+			console.log(treinos)
+		})
+		.catch(err => console.log(err))
 
 </script>
