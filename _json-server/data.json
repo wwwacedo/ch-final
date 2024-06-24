@@ -1,8 +1,9 @@
 
+
 {
 	"treinos": [
-	{
-			"nome": "Treino p/ membros superiores",
+		{
+			"nome": "MEMBROS SUPERIORES",
 			"exercicios": [
 					{
 							"nome": "Supino",
@@ -13,9 +14,141 @@
 							"reps": "10",
 							"peso": "5",
 							"descanso": "30"
+					},
+					{
+						"nome": "Remada com halteres",
+						"grupo": "superior",
+						"subgrupo": "ombro",
+						"equipamento": "halteres",
+						"series": "3",
+						"reps": "10",
+						"peso": "5",
+						"descanso": "30"
+					},
+					{
+						"nome": "Flexão de braços",
+						"grupo": "superior",
+						"subgrupo": "peito",
+						"equipamento": "sem equipamento",
+						"series": "3",
+						"reps": "10",
+						"peso": "0",
+						"descanso": "30"
+					},
+					{
+						"nome": "Elevação lateral",
+						"grupo": "superior",
+						"subgrupo": "ombros",
+						"equipamento": "halteres",
+						"series": "3",
+						"reps": "10",
+						"peso": "5",
+						"descanso": "30"
 					}
 			]
-	}
+		},
+		{
+			"nome": "MEMBROS INFERIORES",
+			"exercicios": [
+				{
+					"nome": "Agachamento",
+					"grupo": "inferior",
+					"subgrupo": "pernas (geral)",
+					"equipamento": "barra",
+					"series": "3",
+					"reps": "12",
+					"peso": "10",
+					"descanso": "45"
+				},
+				{
+					"nome": "Leg Press",
+					"grupo": "inferior",
+					"subgrupo": "pernas (geral)",
+					"equipamento": "máquina",
+					"series": "3",
+					"reps": "12",
+					"peso": "50",
+					"descanso": "45"
+				},
+				{
+					"nome": "Afundo",
+					"grupo": "inferior",
+					"subgrupo": "glúteos",
+					"equipamento": "halteres",
+					"series": "3",
+					"reps": "12",
+					"peso": "10",
+					"descanso": "45"
+				},
+				{
+					"nome": "Extensão de pernas",
+					"grupo": "inferior",
+					"subgrupo": "quadríceps",
+					"equipamento": "máquina",
+					"series": "3",
+					"reps": "12",
+					"peso": "30",
+					"descanso": "45"
+				},
+				{
+					"nome": "Flexão de pernas",
+					"grupo": "inferior",
+					"subgrupo": "posterior",
+					"equipamento": "máquina",
+					"series": "3",
+					"reps": "12",
+					"peso": "30",
+					"descanso": "45"
+				}
+			]
+		},
+		{
+			"nome": "ABDOMINAL",
+			"exercicios": [
+				{
+					"nome": "Abdominal reto",
+					"grupo": "core",
+					"subgrupo": "core (geral)",
+					"equipamento": "sem equipamento",
+					"series": "3",
+					"reps": "15",
+					"peso": "0",
+					"descanso": "30"
+				},
+				{
+					"nome": "Prancha",
+					"grupo": "core",
+					"subgrupo": "core (geral)",
+					"equipamento": "sem equipamento",
+					"series": "3",
+					"reps": "60 segundos",
+					"peso": "0",
+					"descanso": "30"
+				},
+				{
+					"nome": "Elevação de pernas",
+					"grupo": "core",
+					"subgrupo": "abdômen",
+					"equipamento": "sem equipamento",
+					"series": "3",
+					"reps": "15",
+					"peso": "0",
+					"descanso": "30"
+				},
+				{
+					"nome": "Bicicleta no solo",
+					"grupo": "core",
+					"subgrupo": "abdômen",
+					"equipamento": "sem equipamento",
+					"series": "3",
+					"reps": "15 (cada lado)",
+					"peso": "0",
+					"descanso": "30"
+				}
+			]
+		}
 	]
 }
+
+
 

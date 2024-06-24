@@ -17,5 +17,5 @@ export const SUBGRUPOS = {
 	core: ['core (geral)', 'abdômen', 'lombar']
 };
 
-export const EQUIPAMENTO = ['sem equipamento', 'elástico', 'dumbbells', 'barbells', 'kettlebell', 'anilha', 'barra', 'máquina'];
+export const EQUIPAMENTO = ['sem equipamento', 'elástico', 'halteres', 'barbells', 'kettlebell', 'anilha', 'barra', 'máquina'];
 

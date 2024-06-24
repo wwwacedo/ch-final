@@ -1,0 +1,42 @@
+<!-- Sugestões -->
+<main>
+	<section id="sugestoes">
+	</section>
+
+
+</main>
+
+<script type="module">
+
+	import { criarCardTreino } from '../assets/js/main/controllers.js';
+	import { salvarTreino, obterTreino } from '../assets/js/localStorage/localStorage.js';
+
+	const $section = document.querySelector('section');
+
+	function renderTreinos(treinos) {
+    $section.innerHTML = `<h2>Sugestões iniciais</h2>`;
+    treinos.forEach(treino => criarCardTreino($section, treino, () => {}, false));
+  }
+
+	function fetchTreinos() {
+    fetch('http://localhost:3333/treinos')
+      .then(response => response.json())
+      .then(treinos => {
+        localStorage.setItem('sugeridos', JSON.stringify(treinos));
+        renderTreinos(treinos);
+      })
+      .catch(err => {
+        $section.innerHTML = `<h2>Nenhuma sugestão encontrada!</h2>`;
+        console.log(err);
+      });
+  }
+
+	const sugeridos = localStorage.getItem('sugeridos');
+
+  if (sugeridos) {
+    renderTreinos(JSON.parse(sugeridos));
+  } else {
+    fetchTreinos();
+  }
+
+</script>

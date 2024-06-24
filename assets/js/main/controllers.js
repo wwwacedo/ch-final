@@ -52,7 +52,7 @@ export function criarTreino(nome, exercicios) {
 	return new Treino(nome.toUpperCase(), exercicios);
 }
 
-export function criarCardTreino(elemento, treino, callback) {
+export function criarCardTreino(elemento, treino, callback, excluivel = true) {
 	const $card = document.createElement('div');
 	$card.classList.add('card-treino');
 
@@ -85,13 +85,14 @@ export function criarCardTreino(elemento, treino, callback) {
 		cardExercicios.appendChild($cardExercicio);
 	}
 
-	const $botaoApagar = document.createElement('button');
-	$botaoApagar.classList.add('apagar-treino');
-	$botaoApagar.addEventListener('click', callback);
-	$botaoApagar.textContent = 'EXCLUIR TREINO';
-
-	cardExercicios.appendChild($botaoApagar);
-
+	if (excluivel) {
+		const $botaoApagar = document.createElement('button');
+		$botaoApagar.classList.add('apagar-treino');
+		$botaoApagar.addEventListener('click', callback);
+		$botaoApagar.textContent = 'EXCLUIR TREINO';
+		cardExercicios.appendChild($botaoApagar);
+	}
+	
 	$card.appendChild(cardExercicios);
 
 	elemento.appendChild($card);

@@ -2,8 +2,8 @@ export function salvarTreino(treino) {
 	localStorage.setItem('treino', JSON.stringify(treino));
 }
 
-export function obterTreino() {
-	return JSON.parse(localStorage.getItem('treino'));
+export function obterTreino(key = 'treino') {
+	return JSON.parse(localStorage.getItem(key));
 }
 
 export function removerTreino(nomeTreino) {
