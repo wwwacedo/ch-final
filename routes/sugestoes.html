@@ -14,29 +14,30 @@
 	const $section = document.querySelector('section');
 
 	function renderTreinos(treinos) {
-    $section.innerHTML = `<h2>Sugestões iniciais</h2>`;
-    treinos.forEach(treino => criarCardTreino($section, treino, () => {}, false));
-  }
+		$section.innerHTML = `<h2>Sugestões iniciais</h2>`;
+		treinos.forEach(treino => criarCardTreino($section, treino, () => { }, false));
+	}
 
 	function fetchTreinos() {
-    fetch('http://localhost:3333/treinos')
-      .then(response => response.json())
-      .then(treinos => {
-        localStorage.setItem('sugeridos', JSON.stringify(treinos));
-        renderTreinos(treinos);
-      })
-      .catch(err => {
-        $section.innerHTML = `<h2>Nenhuma sugestão encontrada!</h2>`;
-        console.log(err);
-      });
-  }
+		// fetch('http://localhost:3333/treinos')
+		fetch('../data.json')
+			.then(response => response.json())
+			.then(data => {
+				localStorage.setItem('sugeridos', JSON.stringify(data.treinos));
+				renderTreinos(data.treinos);
+			})
+			.catch(err => {
+				$section.innerHTML = `<h2>Nenhuma sugestão encontrada!</h2>`;
+				console.log(err);
+			});
+	}
 
 	const sugeridos = localStorage.getItem('sugeridos');
 
-  if (sugeridos) {
-    renderTreinos(JSON.parse(sugeridos));
-  } else {
-    fetchTreinos();
-  }
+	if (sugeridos) {
+		renderTreinos(JSON.parse(sugeridos));
+	} else {
+		fetchTreinos();
+	}
 
 </script>

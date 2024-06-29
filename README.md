@@ -1,9 +1,29 @@
-# Atualizações:
-1. Propriedade elements do HTMLFormElement para acessar os elementos do form cujas options são criados ao iniciar;
-2. FormData para capturar os valores do formulário ao submetê-lo;
-3. Validações `min`, `max`, `maxlength` no HTML, além do `required` implementado anteriormente;
-4. Mensagem de erro implementada abaixo do `input#nome-treino`;
-5. Customização de Alerts de sucesso e de erro;
-6. Criar Dialog para aguardar confirmação do usuário antes de excluir treino;
-7. Salvar exercícios e treinos no localStorage;
-8. Criar rotas.
+<p align="center">
+  <img src="assets/image/logo.png" alt="Treino Fácil" title="logo" width="200">
+</p>
+
+# Treino Fácil
+
+Treino Fácil is a web application developed as a part of the **CoderHouse JavaScript Course**. It was developed with the purpose of studying and emulating a Single Page Application (SPA) using vanilla JavaScript. This project showcases the implementation of dynamic content loading, routing, and state management without relying on any external libraries or frameworks.
+
+## Educational Purpose
+
+This project serves as a practical application of the concepts learned during the CoderHouse JavaScript Course. It focuses on:
+
+- Understanding the basics of web development including HTML, CSS, and JavaScript.
+- Learning how to structure a project and manage its resources effectively.
+- Implementing SPA functionalities using vanilla JavaScript.
+
+## Routes
+
+- **/**: A welcoming page where users can navigate through the application's features.
+- **/novo-treino**: Allows users to create new, customized workout plans according to their preferences and goals.
+- **/sugestoes**: Provides curated workout suggestions to users looking for inspiration or guidance in their fitness journey.
+
+## Technologies Used
+
+- **HTML5**: For structuring the web application's content.
+- **CSS3**: For styling the application, including custom stylesheets for modals, alerts, and loaders.
+- **JavaScript**: For dynamic content and interactivity, showcasing SPA functionalities without external libraries.
+
+</div>
