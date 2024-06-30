@@ -16,9 +16,9 @@ This project serves as a practical application of the concepts learned during th
 
 ## Routes
 
-- **/**: A welcoming page where users can navigate through the application's features.
+- **/**: A page where users can see all workouts they have.
 - **/novo-treino**: Allows users to create new, customized workout plans according to their preferences and goals.
-- **/sugestoes**: Provides curated workout suggestions to users looking for inspiration or guidance in their fitness journey.
+- **/sugestoes**: Provides curated workout suggestions to users looking for inspiration or initial guidance in their fitness journey.
 
 ## Technologies Used
 
